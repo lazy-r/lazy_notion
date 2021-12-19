@@ -7,7 +7,9 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import top.lazyr.notion.util.HttpUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,22 +19,26 @@ import java.util.Map;
 @Service
 public class VideoService {
 
-    public Map<String, String> getMovieNameLink(String keyword) {
+    public Map<String, Object> getMovieNameLink(String keyword) {
         String data = HttpUtil.get("https://www.1905.com/search/?q=" + keyword);
         if (data == null) {
             return null;
         }
         Document document = Jsoup.parse(data);;
-        Map<String, String> nameLink = new HashMap<>();
+        Map<String, Object> nameLink = new HashMap<>();
 
         Elements movie_box = document.getElementsByClass("movie_box");
         for (Element movieBox : movie_box) {
-
             for (Element titleMV : movieBox.getElementsByClass("title-mv")) {
                 Elements a = titleMV.getElementsByTag("a");
                 nameLink.put(a.text(), a.get(0).attr("href"));
             }
         }
+        List<String> movieNames = new ArrayList<>();
+        for (String name : nameLink.keySet()) {
+            movieNames.add(name);
+        }
+        nameLink.put("movie_name", movieNames);
 
         return nameLink;
     }

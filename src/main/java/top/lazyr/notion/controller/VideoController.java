@@ -17,7 +17,7 @@ public class VideoController {
     private VideoService service;
 
     @GetMapping("/movie")
-    public Map<String, String> getMovieNames(String keyword) {
+    public Map<String, Object> getMovieNames(String keyword) {
         return service.getMovieNameLink(keyword);
     }
 
