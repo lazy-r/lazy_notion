@@ -1,4 +1,5 @@
 #!/bin/bash
+git reset --hard
 git pull
 mvn -U -am clean package
 docker rm -f lazy_notion
