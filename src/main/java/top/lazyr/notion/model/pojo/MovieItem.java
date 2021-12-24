@@ -16,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class MovieItem {
     private String url;
     private String status;
+    private String type;
 }

@@ -17,13 +17,13 @@ public class VideoController {
     private VideoService service;
 
     @GetMapping("/movie")
-    public Map<String, Object> getMovieNames(String keyword) {
-        return service.getMovieNameLink(keyword);
+    public Map<String, Object> getVideoNames(String keyword) {
+        return service.getVideoNameLink(keyword);
     }
 
     @PostMapping("/movie")
-    public String createMovieItem(@RequestBody MovieItem movieItem) {
+    public String createVideoItem(@RequestBody MovieItem movieItem) {
         System.out.println("url => " + movieItem.getUrl() + ", status => " + movieItem.getStatus());
-        return service.createMovieItem(movieItem.getUrl(), movieItem.getStatus());
+        return service.createVideoItem(movieItem.getUrl(), movieItem.getStatus(), movieItem.getType());
     }
 }
