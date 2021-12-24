@@ -27,15 +27,13 @@ public class VideoService {
         }
         Document document = Jsoup.parse(data);
         Elements results = document.getElementsByClass("result");
+        List<String> movieNames = new ArrayList<>();
         for (Element result : results) {
             String title = result.getElementsByClass("title").get(0).getElementsByTag("a").text();
             String intro = result.getElementsByClass("subject-cast").text();
             String link = result.getElementsByClass("title").get(0).getElementsByTag("a").get(0).attr("href");
             nameLink.put(title + " / " + intro, link);
-        }
-        List<String> movieNames = new ArrayList<>();
-        for (String movieName : nameLink.keySet()) {
-            movieNames.add(movieName);
+            movieNames.add(title + " / " + intro);
         }
         nameLink.put("movie_name", movieNames);
         return nameLink;
