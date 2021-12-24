@@ -98,9 +98,9 @@ public class VideoService {
 
         // 初始化iconMap
         Map<String, String> iconMap = new HashMap<>();
-        iconMap.put("Film", "https://www.notion.so/image/https%3A%2F%2Fgitee.com%2Flazy_r%2Ftypora%2Fraw%2Fmaster%2Fimg%2Fprojector.png?table=block&id=9559f696-d63b-4bda-b870-630c596744b0&spaceId=67f4e34b-cceb-4e66-a61a-c72650af038e&width=250&userId=c60e8b5d-c151-4605-8f52-948dddd4d5d3&cache=v2");
-        iconMap.put("Teleplay", "https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6892a844-9d7e-48a7-b0c2-e227734276fc%2Ftv.png?table=block&id=e476a314-99f4-4033-a4ea-be4dd2e0f1e3&spaceId=67f4e34b-cceb-4e66-a61a-c72650af038e&width=250&userId=c60e8b5d-c151-4605-8f52-948dddd4d5d3&cache=v2");
-        iconMap.put("Variety", "https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0fa1bb0a-722c-49dd-8304-fe45ada6aa7c%2F%E7%BB%BC%E8%89%BA.png?table=block&id=824717ee-feff-409c-82da-c8c1f6259483&spaceId=67f4e34b-cceb-4e66-a61a-c72650af038e&width=250&userId=c60e8b5d-c151-4605-8f52-948dddd4d5d3&cache=v2");
+        iconMap.put("Film", "https://gitee.com/lazy_r/typora/raw/master/img/film.png");
+        iconMap.put("Teleplay", "https://gitee.com/lazy_r/typora/raw/master/img/tv.png");
+        iconMap.put("Variety", "https://gitee.com/lazy_r/typora/raw/master/img/variety.png");
 
         Map<String, String> placeholders = new HashMap<>();
         placeholders.put("$imgUrl", (String)movieNameTypeCoverPubYearEpisodes.get("$imgUrl"));
@@ -145,10 +145,10 @@ public class VideoService {
 
         for (String placeholder : placeholders.keySet()) {
             body = body.replace(placeholder, placeholders.get(placeholder));
+            System.out.println(body);
         }
         return HttpUtil.post("https://api.notion.com/v1/pages", headers, body);
     }
-
 
 
 }
