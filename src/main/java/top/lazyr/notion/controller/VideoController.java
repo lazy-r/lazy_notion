@@ -1,5 +1,7 @@
 package top.lazyr.notion.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.lazyr.notion.model.pojo.MovieItem;
@@ -13,6 +15,7 @@ import java.util.Map;
  */
 @RestController
 public class VideoController {
+    private static Logger logger = LoggerFactory.getLogger(VideoController.class);
     @Autowired
     private VideoService service;
 
@@ -23,7 +26,7 @@ public class VideoController {
 
     @PostMapping("/movie")
     public String createVideoItem(@RequestBody MovieItem movieItem) {
-        System.out.println("url => " + movieItem.getUrl() + ", status => " + movieItem.getStatus());
+        logger.info("url => " + movieItem.getUrl() + ", status => " + movieItem.getStatus() + ", type => " + movieItem.getType());
         return service.createVideoItem(movieItem.getUrl(), movieItem.getStatus(), movieItem.getType());
     }
 }

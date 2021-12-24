@@ -4,6 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import top.lazyr.notion.util.HttpUtil;
 
@@ -18,6 +20,7 @@ import java.util.Map;
  */
 @Service
 public class VideoService {
+    private Logger logger = LoggerFactory.getLogger(VideoService.class);
 
     public Map<String, Object> getVideoNameLink(String keyword) {
         String data = HttpUtil.get("https://www.douban.com/search?cat=1002&q=" + keyword);
@@ -91,6 +94,7 @@ public class VideoService {
         */
         String body = "{\"parent\":{\"database_id\":\"55a0e6c5b83f48a5aee47b5812e16231\"},\"properties\":{\"Name\":{\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"$movieName\",\"link\":null}}]},\"Type\":{\"type\":\"select\",\"select\":{\"name\":\"$type\"}},\"Status\":{\"type\":\"select\",\"select\":{\"name\":\"$status\"}},\"Label\":{\"type\":\"multi_select\",\"multi_select\":$labels},\"Episodes\":{\"type\":\"number\",\"number\":$episodes},\"PubYear\":{\"type\":\"number\",\"number\":$pubYear}},\"children\":[{\"type\":\"image\",\"image\":{\"type\":\"external\",\"external\":{\"url\":\"$imgUrl\"}}}],\"icon\":{\"type\":\"external\",\"external\":{\"url\":\"$iconUrl\"}}}";
         Map<String, Object> movieNameTypeCoverPubYearEpisodes = getVideoNameTypeCoverEpisodes(url);
+        logger.info("search movie info => " + movieNameTypeCoverPubYearEpisodes);
 
         // 初始化iconMap
         Map<String, String> iconMap = new HashMap<>();
