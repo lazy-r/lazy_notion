@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class MovieItem {
-    private String movieName;
     private String url;
     private String status;
 }

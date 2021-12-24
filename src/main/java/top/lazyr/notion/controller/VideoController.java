@@ -23,7 +23,7 @@ public class VideoController {
 
     @PostMapping("/movie")
     public String createMovieItem(@RequestBody MovieItem movieItem) {
-        System.out.println("movieName => " + movieItem.getMovieName() + ", url => " + movieItem.getUrl() + ", status => " + movieItem.getStatus());
-        return service.createMovieItem(movieItem.getMovieName(), movieItem.getUrl(), movieItem.getStatus());
+        System.out.println("url => " + movieItem.getUrl() + ", status => " + movieItem.getStatus());
+        return service.createMovieItem(movieItem.getUrl(), movieItem.getStatus());
     }
 }
