@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 mvn -U -am clean package
 docker rm -f lazy_notion
 docker rmi -f lazy_notion:v1
